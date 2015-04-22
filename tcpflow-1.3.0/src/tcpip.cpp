@@ -252,7 +252,7 @@ static int process_client_message (char *fixed, char *variable, int fd)
 								"button %d %s", i,
 								(buttons & (1<<i)) ? "down" : "up");
 						if (current_x == x && current_y == y) {
-							double_click_option((buttons & (1<<i)), ms );
+							double_click_option((buttons & (1<<i)), ms);
 						}
 
 						diff ^= 1<<i;

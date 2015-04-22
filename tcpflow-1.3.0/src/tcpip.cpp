@@ -70,7 +70,7 @@ static size_t variable_part (char *buffer)
 	return 0;
 }
 
-static void double_click_option(int down, int ms_time)
+static void double_click_option(int down, int ms_time, int x, int y)
 {
 	char command_buf[1024] = {0};
 	static char double_flag[4] = {0};
@@ -107,7 +107,7 @@ static void double_click_option(int down, int ms_time)
 
 	if (double_flag[0] == 1 && double_flag[1] == 1 && double_flag[2] == 1 && double_flag[3] == 1){
 	    memset(command_buf, 0, sizeof(command_buf));
-	    sprintf(command_buf, "/sbin/vnc_command %d %d", pid_num, 0);
+	    sprintf(command_buf, "/sbin/vnc_command %d %d %d %d", pid_num, 0, x, y);
 	    system(command_buf);
        	    memset(double_flag, 0, 4);
 	    return;
@@ -252,7 +252,7 @@ static int process_client_message (char *fixed, char *variable, int fd)
 								"button %d %s", i,
 								(buttons & (1<<i)) ? "down" : "up");
 						if (current_x == x && current_y == y) {
-							double_click_option((buttons & (1<<i)), ms);
+							double_click_option((buttons & (1<<i)), ms, x, y);
 						}
 
 						diff ^= 1<<i;

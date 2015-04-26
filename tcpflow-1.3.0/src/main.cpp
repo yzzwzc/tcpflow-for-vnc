@@ -22,6 +22,7 @@ int suppress_header = 0;
 int strip_nonprint = 0;
 int use_color = 0;
 int pid_num = -1;
+int dont_store_file = 0;
 u_int min_skip  = 1000000;
 bool opt_no_purge = false;
 
@@ -124,7 +125,7 @@ void replace(std::string &str,const std::string &from,const std::string &to)
 int main(int argc, char *argv[])
 {
     bool force_binary_output = false;
-    bool opt_all = true;
+    bool opt_all = false;
     char *device = NULL;
     const char *lockname = 0;
     int need_usage = 0;
@@ -159,7 +160,7 @@ int main(int argc, char *argv[])
     init_debug(argv);
 
     int arg;
-    while ((arg = getopt(argc, argv, "aA:Bb:cCd:eF:f:hi:L:m:n:o:PpR:r:sT:VvX:Z")) != EOF) {
+    while ((arg = getopt(argc, argv, "aA:Bb:cCd:eF:f:hi:L:m:n:Oo:PpR:r:sT:VvX:Z")) != EOF) {
 	switch (arg) {
 	case 'a':
 	    demux.opt_after_header = true;
@@ -241,6 +242,7 @@ int main(int argc, char *argv[])
 	case 'm':
 	    min_skip = atoi(optarg);    DEBUG(10) ("min_skip set to %d",min_skip); break;
 	case 'o': demux.outdir = optarg; break;
+	case 'O': dont_store_file = 1; break;
 	case 'P': opt_no_purge = true; break;
 	case 'p': demux.opt_no_promisc = true;
 	    DEBUG(10) ("NOT turning on promiscuous mode");

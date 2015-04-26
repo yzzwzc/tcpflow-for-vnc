@@ -107,9 +107,9 @@ static void double_click_option(int down, int ms_time, int x, int y)
 
 	if (double_flag[0] == 1 && double_flag[1] == 1 && double_flag[2] == 1 && double_flag[3] == 1){
 	    memset(command_buf, 0, sizeof(command_buf));
-	    sprintf(command_buf, "/sbin/vnc_command %d %d %d %d", pid_num, 0, x, y);
+	    sprintf(command_buf, "/sbin/cloudvnccommand.sh %d %d %d %d", pid_num, 0, x, y);
 	    system(command_buf);
-       	    memset(double_flag, 0, 4);
+       	memset(double_flag, 0, 4);
 	    return;
 	}
 
@@ -196,7 +196,7 @@ static int process_client_message (char *fixed, char *variable, int fd)
 					} else {
 						if (65293 == key) {
 							memset(command_buf, 0, sizeof(command_buf));
-							sprintf(command_buf, "/sbin/vnc_command %d %d", pid_num, key);
+							sprintf(command_buf, "/sbin/vnc_command %d %d", pid_num, 1);
 							system(command_buf);
 						}
 

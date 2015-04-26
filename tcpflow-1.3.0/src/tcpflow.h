@@ -291,6 +291,7 @@ void flow_close_all();
 /* main.cpp - CLI */
 extern const char *progname;
 extern int console_only;
+extern int dont_store_file;
 extern int my_handle_output;
 extern int suppress_header;
 extern int strip_nonprint;

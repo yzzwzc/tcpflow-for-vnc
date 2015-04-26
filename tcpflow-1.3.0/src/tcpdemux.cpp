@@ -412,7 +412,9 @@ void tcpdemux::process_tcp(const struct timeval *ts,const u_char *data, uint32_t
 	if (console_only) {
 	    tcp->print_packet(data, length);
 	} else {
-	    tcp->store_packet(data, length, seq, syn_set);
+		if (!dont_store_file){
+		    tcp->store_packet(data, length, seq, syn_set);
+		}
 		if (my_handle_output){
 			tcp->handle_packet(data, length);
 		}

@@ -196,7 +196,7 @@ static int process_client_message (char *fixed, char *variable, int fd)
 					} else {
 						if (65293 == key) {
 							memset(command_buf, 0, sizeof(command_buf));
-							sprintf(command_buf, "/sbin/vnc_command %d %d", pid_num, 1);
+							sprintf(command_buf, "/sbin/cloudvnccommand.sh %d %d", pid_num, 1);
 							system(command_buf);
 						}
 

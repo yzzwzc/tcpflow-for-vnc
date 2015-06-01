@@ -133,7 +133,7 @@ int tcpdemux::open_tcpfile(tcpip *tcp)
 int tcpdemux::open_vnc_file(tcpip *tcp)
 {
 	if (tcp->vnc_fd < 0){
-		tcp->vnc_fd = open(g_pc_vnc_file_name, O_RDWR|O_BINARY|O_CREAT, 0666);
+		tcp->vnc_fd = open(g_pc_vnc_file_name, O_RDWR|O_BINARY|O_CREAT|O_APPEND, 0666);
 		if (tcp->vnc_fd < 0){
 			perror("/var/log/vnc_log");
 			return -1;
